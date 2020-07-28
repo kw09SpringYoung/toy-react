@@ -1,0 +1,27 @@
+module.exports={
+    entry:{
+        main:'./main.js'
+    },
+    //使dist文件不压缩
+    mode:'development',
+    optimization:{
+        minimize:false
+    },
+    module:{
+        rules:[
+           { 
+               test: /\.js$/ ,
+               use:{
+                   loader:'babel-loader',//jsx的插件依赖babel-loader
+                   options:{
+                       presets:['@babel/preset-env'],
+                       plugins:[[
+                           "@babel/plugin-transform-react-jsx",
+                           {pragma:"ToyReact.createElement"}
+                       ]]
+                   }
+               }
+            }
+        ]
+    }
+}
